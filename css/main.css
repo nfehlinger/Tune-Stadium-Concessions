@@ -1,0 +1,69 @@
+html{
+	background-image: url("https://www.warnerbros.com/archive/spacejam/movie/img/bg_stars.gif");
+}
+*{
+	font-family: 'Aldrich';
+	box-sizing: border-box;
+	color: #fff;
+}
+body{
+	text-align: center;
+	width: 800px;
+	margin: 20px auto;
+}
+#label{
+	display: inline-block;
+}
+form{
+	display: inline-block;
+	color: #000;
+}
+input{
+	color:#000;
+}
+#name{
+	color: #000;
+}
+.item{
+	display: inline-block;
+	width: 30%;
+	height: 430px;
+	vertical-align: top;
+	border: 5px solid blue;
+	background-color: red;
+}
+.image{
+	width: 95%;
+	height: 350px;
+	margin: 5px auto;
+}
+#chicken .image{
+	background-image: url("http://vignette1.wikia.nocookie.net/looneytunes/images/0/0b/Foghorn-Leghorn.jpg/revision/latest?cb=20150112233827");
+	background-size: cover;
+}
+#roadRunner .image{
+	background-image: url("https://s-media-cache-ak0.pinimg.com/736x/f8/6a/95/f86a954f550c45a3af14a2b645732022.jpg");
+	background-size: cover;
+}
+#secretStuff .image{
+	background-image: url("http://static1.squarespace.com/static/526f43aee4b0e0d7dac803ce/526f695ee4b0e0d7dac821a4/53f2e0a7e4b0660efd64d9c5/1415949135228/?format=1000w");
+	background-size: cover;
+	background-position: -60px 0;
+}
+footer{
+	height: 150px;
+	margin: 20px;
+}
+#total{
+	display: inline-block;
+	width: 580px;
+	vertical-align: top;
+	text-align: left;
+}
+#newCustomer{
+	display: inline-block;
+	width: 150px;
+	height: 100%;
+	background-image: url("/images/white-checkout-256.png");
+	background-size: contain;
+}

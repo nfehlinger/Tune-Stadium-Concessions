@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<title>Tune Stadium Concession</title>
+</head>
+<body>
+	<h1>Tune Stadium Concessions</h1>
+	<h2>Place your order below</h2>
+	<p id="label">Customer Name: <span id="customer"></span></p>
+	<form>
+		<input type="text" name="name" id="name">
+		<input type="submit" name="submit">
+	</form>
+	<div id="menu">
+		<div class="item" id="chicken">
+			<div class = "image"></div>
+			<p>Chicken - $6</p>
+		</div>
+		<div class="item" id="roadRunner">
+			<div class = "image"></div>
+			<p>Road Runner - $9</p>
+		</div>
+		<div class="item" id="secretStuff">
+			<div class = "image"></div>
+			<p>Michael's Secret Stuff - $150</p>
+		</div>
+	</div>
+	<footer>
+	<div id="total">
+		<p>Chicken: <span id="chxTot"></span></p>
+		<p>Road Runner: <span id="runnerTot"></span></p>
+		<p>Michael's Secret Stuff: <span id="stuffTot"></span></p>
+		<p>Total: $<span id="tot"></span></p>
+	</div>
+	<div id="newCustomer"></div>
+	</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="js/cookies.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
