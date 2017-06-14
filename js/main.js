@@ -75,10 +75,14 @@ Register.prototype.addChicken = function(){
 		tot.innerText = this.total;
 }
 Register.prototype.removeChicken = function(){
+	if(this.chicken > 0){
 		this.chicken -= 1;
 		this.total -= 6;
 		chxTot.innerText = this.chicken;
 		tot.innerText = this.total;
+	}else{
+		this.chicken = 0;
+	}
 }
 
 Register.prototype.addRunner = function(){
@@ -88,10 +92,14 @@ Register.prototype.addRunner = function(){
 		tot.innerText = this.total;
 }
 Register.prototype.removeRunner = function(){
+	if(this.roadRunner > 0){
 		this.roadRunner -= 1;
 		this.total -= 9;
 		runnerTot.innerText = this.roadRunner;
 		tot.innerText = this.total;
+	}else{
+		this.roadRunner =0;
+	}
 }
 
 Register.prototype.addStuff = function(){
@@ -101,10 +109,14 @@ Register.prototype.addStuff = function(){
 		tot.innerText = this.total;
 }
 Register.prototype.removeStuff = function(){
+	if(this.secretStuff > 0){
 		this.secretStuff -= 1;
 		this.total -= 150;
 		stuffTot.innerText = this.secretStuff;
 		tot.innerText = this.total;
+	}else{
+		this.secretStuff = 0;
+	}
 }
 Register.prototype.updateCookies = function(){
 	Cookies.set("chx", this.chicken);
