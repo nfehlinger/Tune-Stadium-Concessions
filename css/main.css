@@ -27,6 +27,13 @@ input{
 #name{
 	color: #000;
 }
+#drop{
+	cursor: pointer;
+	width: 250px;
+	margin: 10px auto;
+	border: 2px solid #fff;
+	padding: 5px;
+}
 .wrapper{
 	display: none;
 	width: 600px;
@@ -46,6 +53,10 @@ ol{
 #hide{
 	width: 200px;
 	margin:	5px auto;
+	cursor: pointer;
+}
+#menu{
+	margin-top: 15px;
 }
 .item{
 	display: inline-block;
