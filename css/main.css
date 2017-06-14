@@ -11,6 +11,9 @@ body{
 	width: 800px;
 	margin: 20px auto;
 }
+p{
+	margin: 3px;
+}
 #label{
 	display: inline-block;
 }
@@ -24,6 +27,26 @@ input{
 #name{
 	color: #000;
 }
+.wrapper{
+	display: none;
+	width: 600px;
+	margin: 0 auto;
+	padding: 10px;
+	background-color: #fff;
+	color: #000;
+}
+ol{
+	padding-left: 25px;
+}
+#list li, #hide{
+	color: #000;
+	padding: 5px;
+	border: 1px solid #000;
+}
+#hide{
+	width: 200px;
+	margin:	5px auto;
+}
 .item{
 	display: inline-block;
 	width: 30%;
@@ -31,6 +54,7 @@ input{
 	vertical-align: top;
 	border: 5px solid blue;
 	background-color: red;
+	cursor: pointer;
 }
 .image{
 	width: 95%;
@@ -56,14 +80,15 @@ footer{
 }
 #total{
 	display: inline-block;
-	width: 580px;
+	width: 630px;
 	vertical-align: top;
 	text-align: left;
 }
 #newCustomer{
 	display: inline-block;
-	width: 150px;
-	height: 100%;
+	width: 50px;
+	height: 50px;
 	background-image: url("/images/white-checkout-256.png");
 	background-size: contain;
+	cursor: pointer;
 }

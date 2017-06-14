@@ -1,6 +1,9 @@
 var chxbtn = document.querySelector("#chicken")
 	  , runbtn = document.querySelector("#roadRunner")
 	  , stuffbtn = document.querySelector("#secretStuff")
+	  , remchx = document.querySelector("#remChx")
+	  , remruns = document.querySelector("#remRuns")
+	  , remstuff = document.querySelector("#remStuff")
 	  , chxTot = document.querySelector("#chxTot")
 	  , runnerTot = document.querySelector("#runnerTot")
 	  , stuffTot = document.querySelector("#stuffTot")
@@ -12,11 +15,12 @@ var chxbtn = document.querySelector("#chicken")
 	  , reset = document.querySelector("#newCustomer")
 	  , customerInput = document.querySelector("#name")
 	  , customerDisplay = document.querySelector("#customer")
-	  , customer = Cookies.get("customer")
+	  // , customer = Cookies.get("customer")
 	  , form = document.querySelector("form");
 
 
 function Register(){
+	this.customers = [];
 	this.customerName = customerInput.value;
 	this.chicken = ~~chxCookie;
 	this.roadRunner = ~~runsCookie;
@@ -28,14 +32,51 @@ function Register(){
 	tot.innerText = this.total;
 }
 
+Register.prototype.addCustomer = function(cust){
+	 if(cust instanceof Customer){
+    	this.customers.push(cust);
+    	document.getElementById("list").innerHTML += "<li class='formCust'>" + cust.name + ": " + cust.chxOrder + " chicken, " + cust.roadOrder + " Road Runner, " + cust.stuffOrder + " Michael's Secret Stuff = $" + cust.totOrder + "</li>";
+    	
+    }else{
+    	return false;
+    };
+};
+
+function Customer(name, chxOrder, roadOrder, stuffOrder,totOrder){
+	this.name = name;
+	this.chxOrder = chxOrder;
+	this.roadOrder = roadOrder;
+	this.stuffOrder = stuffOrder;
+	this.totOrder = totOrder;
+}
+
+Register.prototype.checkInput = function(){
+	var customer = Cookies.get("customer")
+	console.log("customer:", customer)
+	if(customer){
+		$("form").hide();
+		customerDisplay.innerText = customer;
+	}else{
+		customerDisplay.innerText = "";
+		customerInput.value = null;
+		$("form").show();
+	};
+};
+
 Register.prototype.assignCustomer = function(){
 	Cookies.set("customer", customerInput.value);
-	location.reload();
+	this.checkInput();
 }
 
 Register.prototype.addChicken = function(){
 		this.chicken += 1;
 		this.total += 6;
+		chxTot.innerText = this.chicken;
+		tot.innerText = this.total;
+}
+Register.prototype.removeChicken = function(){
+		this.chicken -= 1;
+		this.total -= 6;
 		chxTot.innerText = this.chicken;
 		tot.innerText = this.total;
 }
@@ -46,10 +87,22 @@ Register.prototype.addRunner = function(){
 		runnerTot.innerText = this.roadRunner;
 		tot.innerText = this.total;
 }
+Register.prototype.removeRunner = function(){
+		this.roadRunner -= 1;
+		this.total -= 9;
+		runnerTot.innerText = this.roadRunner;
+		tot.innerText = this.total;
+}
 
 Register.prototype.addStuff = function(){
 		this.secretStuff += 1;
 		this.total += 150;
+		stuffTot.innerText = this.secretStuff;
+		tot.innerText = this.total;
+}
+Register.prototype.removeStuff = function(){
+		this.secretStuff -= 1;
+		this.total -= 150;
 		stuffTot.innerText = this.secretStuff;
 		tot.innerText = this.total;
 }
@@ -64,15 +117,17 @@ var tunes = new Register();
 
 document.addEventListener("DOMContentLoaded", function(){
 
-	if(customer){
-		$("form").hide();
-		customerDisplay.innerText = customer;
-	}else{
-		customerDisplay.innerText = "";
-		$("form").show();
-	}
+	tunes.checkInput();
+
+	$("#drop").click(function(){
+    	$(".wrapper").slideDown(1000);
+	});
+    $("#hide").click(function(){
+    	$(".wrapper").slideUp(1000);
+    });
 
 	form.addEventListener("submit", function(event){
+		console.log('submit');
 		event.preventDefault();
 		tunes.assignCustomer();
 	})
@@ -80,20 +135,35 @@ document.addEventListener("DOMContentLoaded", function(){
 		tunes.addChicken();
 		tunes.updateCookies();
 	});
+	remchx.addEventListener("click", function(){
+		tunes.removeChicken();
+		tunes.updateCookies();
+	});
 	runbtn.addEventListener("click",function(){
 		tunes.addRunner();
+		tunes.updateCookies();
+	});
+	remruns.addEventListener("click",function(){
+		tunes.removeRunner();
 		tunes.updateCookies();
 	});
 	stuffbtn.addEventListener("click",function(){
 		tunes.addStuff();
 		tunes.updateCookies();
 	});
+	remstuff.addEventListener("click",function(){
+		tunes.removeStuff();
+		tunes.updateCookies();
+	});
 	reset.addEventListener("click", function(){
+		tunes.addCustomer(new Customer(Cookies.get("customer"),Cookies.get("chx"),Cookies.get("runs"),Cookies.get("stuff"),Cookies.get("total")));
 		Cookies.expire("chx");
 		Cookies.expire("runs");
 		Cookies.expire("stuff");
 		Cookies.expire("total");
-		Cookies.expire("customer")
-		location.reload();
-	})
+		Cookies.expire("customer");
+		tunes.checkInput();
+		// location.reload();
+		tunes = new Register();
+	});
 });
